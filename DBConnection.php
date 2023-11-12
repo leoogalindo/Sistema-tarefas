@@ -2,20 +2,20 @@
 
 if(!is_dir(__DIR__.'./db'))
     mkdir(__DIR__.'./db');
-/** Define DB File Path */
+
 if(!defined('db_file')) define('db_file',__DIR__.'./db/task_db.db');
-/** Define DB File Path */
+
 if(!defined('tZone')) define('tZone',"America/Sao_Paulo");
 if(!defined('dZone')) define('dZone',ini_get('date.timezone'));
 
-/** DB Connection Class */
+
 Class DBConnection extends SQLite3{
     protected $db;
     function __construct(){
-        /** Opening Database */
+
         $this->open(db_file);
         $this->exec("PRAGMA foreign_keys = ON;");
-        /** Closing Database */
+
         $this->exec("CREATE TABLE IF NOT EXISTS `user_list` (
             `user_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             `fullname` INTEGER NOT NULL,
@@ -76,8 +76,7 @@ Class DBConnection extends SQLite3{
 
 $conn = new DBConnection();
 
-#$user_id = 1; // ID do usuário que você deseja atualizar
-#$newFullname = 'Administrador'; // Novo nome
+
 $conn->updateUser($user_id = 1, $newFullname = 'Administrador');
 $conn->updateUser($user_id = 2, $newFullname = 'Teste01');
 $conn->updateUser($user_id = 3, $newFullname = 'Teste2');
